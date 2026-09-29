@@ -34,7 +34,9 @@ try {
     vectors: [
       {
         chunkId: "pref-1",
-        rawContent: "The customer prefers invoices in Japanese yen, sent on the 5th.",
+        rawContent:
+          "The customer prefers invoices in Japanese yen, " +
+          "sent on the 5th.",
       },
     ],
   });
@@ -42,7 +44,10 @@ try {
   // Recall it by meaning, not by keyword.
   const { semantic } = await client.memory.queryMemory({
     agentInstanceId,
-    semantic: { queryText: "what currency does the customer want to be billed in?", limit: 3 },
+    semantic: {
+      queryText: "what currency does the customer want to be billed in?",
+      limit: 3,
+    },
   });
   for (const m of semantic?.matches ?? []) {
     console.log(`${m.distance.toFixed(3)}  ${m.rawContent}`);
@@ -77,7 +82,9 @@ Requests are plain objects, and the types check them. The message types
 themselves live in the generated modules, for example:
 
 ```ts
-import type { SemanticMatch } from "jennah-sdk-ts/gen/jennah/agent/v1/memory_pb";
+import type {
+  SemanticMatch,
+} from "jennah-sdk-ts/gen/jennah/agent/v1/memory_pb";
 ```
 
 Every call takes an options object as its second argument, with `timeoutMs`
@@ -134,7 +141,10 @@ import { Client, Connection, StaticSource } from "jennah-sdk-ts";
 const connection = new Connection(); // one HTTP/2 connection, reused
 
 function clientFor(accessToken: string): Client {
-  return new Client({ connection, credentials: new StaticSource(accessToken) });
+  return new Client({
+    connection,
+    credentials: new StaticSource(accessToken),
+  });
 }
 ```
 
@@ -148,7 +158,8 @@ The generated code is not committed. With
 repository:
 
 ```sh
-scripts/dev-generate.sh      # generate, and lay the code and conformance suite in place
+# generate, and lay the code and conformance suite in place
+scripts/dev-generate.sh
 npm ci
 npm test
 ```
