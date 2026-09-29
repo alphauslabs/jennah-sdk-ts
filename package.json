@@ -3,6 +3,10 @@
   "version": "0.0.0-dev.0",
   "description": "TypeScript SDK for Jennah, the memory and context platform for AI agents",
   "license": "Apache-2.0",
+  "homepage": "https://github.com/alphauslabs/jennah-sdk-ts#readme",
+  "bugs": {
+    "url": "https://github.com/alphauslabs/jennah-sdk-ts/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alphauslabs/jennah-sdk-ts.git"
