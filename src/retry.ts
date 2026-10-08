@@ -128,6 +128,8 @@ export const NEVER_REPLAY: ReadonlySet<string> = new Set([
   // Commits the enterprise to a paid agreement.
   BILLING + "BindMarketplaceRegistration",
   BILLING + "ResolveMarketplaceRegistration",
+  // Commits the enterprise to more spend, and records each change.
+  BILLING + "SetFormationOverageCap",
 ]);
 
 /**
