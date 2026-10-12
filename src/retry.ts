@@ -44,6 +44,7 @@ export const REPLAYABLE_READS: ReadonlySet<string> = new Set([
   MEMORY + "QueryMemory",
   MEMORY + "InspectMemory",
   MEMORY + "GetMemoryVocabulary",
+  MEMORY + "GetFormationModel",
   SCOPE + "GetScope",
   SCOPE + "ListScopes",
   DATASET + "GetDataset",
@@ -96,6 +97,11 @@ export const NEVER_REPLAY: ReadonlySet<string> = new Set([
   // declaration would overwrite it; rare administrative calls the caller retries.
   MEMORY + "DeclareMemoryVocabulary",
   MEMORY + "RemoveMemoryVocabulary",
+  // The formation model: setting runs a probe on the enterprise's own model and
+  // replaces the model set; rare administrative calls the caller retries knowingly.
+  MEMORY + "PrepareFormationModel",
+  MEMORY + "SetFormationModel",
+  MEMORY + "RemoveFormationModel",
   // A long poll that reports a pending approval as success.
   APPROVAL + "WaitApproval",
   // Each sends mail, records a decision, or ends an approval.
