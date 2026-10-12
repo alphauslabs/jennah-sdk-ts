@@ -102,6 +102,8 @@ export const NEVER_REPLAY: ReadonlySet<string> = new Set([
   MEMORY + "PrepareFormationModel",
   MEMORY + "SetFormationModel",
   MEMORY + "RemoveFormationModel",
+  // Checking makes a real call to the enterprise's own model, which it pays for.
+  MEMORY + "CheckFormationModel",
   // A long poll that reports a pending approval as success.
   APPROVAL + "WaitApproval",
   // Each sends mail, records a decision, or ends an approval.
