@@ -45,6 +45,7 @@ export const REPLAYABLE_READS: ReadonlySet<string> = new Set([
   MEMORY + "InspectMemory",
   MEMORY + "GetMemoryVocabulary",
   MEMORY + "GetFormationModel",
+  MEMORY + "GetFormation",
   SCOPE + "GetScope",
   SCOPE + "ListScopes",
   DATASET + "GetDataset",
@@ -72,6 +73,7 @@ export const REPLAYABLE_READS: ReadonlySet<string> = new Set([
 export const CONDITIONAL_REPLAY: ReadonlySet<string> = new Set([
   MEMORY + "CommitMemory",
   MEMORY + "FormMemory",
+  MEMORY + "SubmitFormation",
   DATA + "CommitData",
   APPROVAL + "CreateApproval",
 ]);
@@ -148,6 +150,8 @@ export const NEVER_REPLAY: ReadonlySet<string> = new Set([
  *   step is append-only, so a commit carrying a log section is not replayed.
  * - FormMemory: only with `formationKey`; extraction is nondeterministic, so a
  *   blind replay forms a second, different set of memory.
+ * - SubmitFormation: only with `formationKey`, for the same reason; a replay
+ *   under the same key returns the formation already accepted.
  * - CommitData: only with `idempotencyKey`.
  * - CreateApproval: only with `requestKey`; mail cannot be recalled.
  *
@@ -160,6 +164,7 @@ export function safeToReplay(method: string, request: object): boolean {
     case MEMORY + "CommitMemory":
       return r.log === undefined;
     case MEMORY + "FormMemory":
+    case MEMORY + "SubmitFormation":
       return Boolean(r.formationKey);
     case DATA + "CommitData":
       return Boolean(r.idempotencyKey);
