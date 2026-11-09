@@ -124,6 +124,10 @@ export const NEVER_REPLAY: ReadonlySet<string> = new Set([
   AUTH + "Logout",
   AUTH + "CreateApiKey",
   AUTH + "RevokeApiKey",
+  // Ripple sign-in: a replayed wrong password counts toward Ripple's lockout,
+  // a replayed email-code request sends another email.
+  AUTH + "RipplePasswordLogin",
+  AUTH + "RequestRippleEmailCode",
   // Membership, role and enterprise administration.
   AUTH + "InviteMember",
   AUTH + "RevokeInvitation",
